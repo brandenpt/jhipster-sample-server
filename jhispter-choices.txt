@@ -18,7 +18,7 @@ n (stateful, works with Keycloak and Okta)
 
 Which *production* database would you like to use? PostgreSQL
 
-Which *development* database would you like to use? H2 with disk-based persistence
+Which *development* database would you like to use? PostgreSQL
 
 Do you want to use the Spring cache abstraction? [BETA] Yes, with the Infinispan implementation (hybrid cache, for multiple nodes)
 
@@ -29,7 +29,7 @@ Would you like to use Maven or Gradle for building the backend? Gradle
 Which other technologies would you like to use? 
  ◉ Search engine using Elasticsearch
  ◉ Asynchronous messages using Apache Kafka
- 
+
 Which *Framework* would you like to use for the client? No client
 
 Would you like to enable internationalization support? Yes
