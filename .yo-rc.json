@@ -1,0 +1,41 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.mycompany.myapp",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "6.8.0",
+    "applicationType": "microservice",
+    "baseName": "jhipster",
+    "packageName": "com.mycompany.myapp",
+    "packageFolder": "com/mycompany/myapp",
+    "serverPort": "8081",
+    "authenticationType": "oauth2",
+    "cacheProvider": "infinispan",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": "elasticsearch",
+    "messageBroker": "kafka",
+    "serviceDiscoveryType": false,
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MDViMWJlNTIzZGQ1NWE4OTdlYjk2YjY3MzY5NWI3NWM0NDQyNTIzYjkwMDg3MGRiNGYyYTgxYjY0OWI5MTE2MjVhMDA0ZjBhYjc0ZmZjMzA2MjE2MDNhNGM3ZDc0OGU3MWU1NGQ2YjQzNmFkYjQ3ZGVlMDc2MTU0YWZmYjBkNGE=",
+    "embeddableLaunchScript": false,
+    "creationTimestamp": 1587919913566,
+    "testFrameworks": ["gatling", "cucumber"],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "clientPackageManager": "npm",
+    "nativeLanguage": "en",
+    "languages": ["en", "pt-pt"],
+    "blueprints": [],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
