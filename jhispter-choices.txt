@@ -11,7 +11,7 @@ ver to run? It should be unique to avoid port conflicts. 8081
 
 What is your default Java package name? com.mycompany.myapp
 
-Which service discovery server do you want to use? No service discovery
+Which service discovery server do you want to use? Consul
 
 Which *type* of authentication would you like to use? OAuth 2.0 / OIDC Authenticatio
 n (stateful, works with Keycloak and Okta)

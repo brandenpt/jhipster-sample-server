@@ -40,6 +40,12 @@ spring:
   jackson:
     serialization:
       indent-output: true
+  cloud:
+    consul:
+      discovery:
+        prefer-ip-address: true
+      host: localhost
+      port: 8500
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:postgresql://localhost:5432/jhipster
@@ -90,7 +96,7 @@ spring:
         enabled: true
 
 server:
-  port: 8081
+  port: 8080
 
 # ===================================================================
 # JHipster specific properties
@@ -126,7 +132,7 @@ jhipster:
   #     allow-credentials: true
   #     max-age: 1800
   mail: # specific JHipster mail property, for standard properties see MailProperties
-    base-url: http://127.0.0.1:8081
+    base-url: http://127.0.0.1:8080
   metrics:
     logs: # Reports metrics in the logs
       enabled: false

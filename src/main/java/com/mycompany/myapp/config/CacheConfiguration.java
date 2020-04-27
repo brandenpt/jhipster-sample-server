@@ -1,6 +1,9 @@
 package com.mycompany.myapp.config;
 
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.client.serviceregistry.Registration;
 import org.springframework.context.annotation.*;
 import org.infinispan.configuration.cache.CacheMode;
 import org.infinispan.configuration.cache.ConfigurationBuilder;
@@ -17,6 +20,21 @@ import org.infinispan.spring.starter.embedded.InfinispanGlobalConfigurer;
 import org.infinispan.transaction.TransactionMode;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernatePropertiesCustomizer;
 import java.util.stream.Stream;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.infinispan.remoting.transport.jgroups.JGroupsTransport;
+import org.jgroups.Channel;
+import org.jgroups.JChannel;
+import org.jgroups.PhysicalAddress;
+import org.jgroups.protocols.*;
+import org.jgroups.protocols.pbcast.GMS;
+import org.jgroups.protocols.pbcast.NAKACK2;
+import org.jgroups.protocols.pbcast.STABLE;
+import org.jgroups.stack.IpAddress;
+import org.jgroups.stack.ProtocolStack;
+import java.net.InetAddress;
+import org.springframework.beans.factory.BeanInitializationException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Configuration
 @EnableCaching
@@ -26,6 +44,20 @@ public class CacheConfiguration {
 
     // Initialize the cache in a non Spring-managed bean
     private static EmbeddedCacheManager cacheManager;
+
+    private DiscoveryClient discoveryClient;
+
+    private Registration registration;
+
+    @Autowired(required = false)
+    public void setRegistration(Registration registration) {
+        this.registration = registration;
+    }
+
+    @Autowired(required = false)
+    public void setDiscoveryClient(DiscoveryClient discoveryClient) {
+        this.discoveryClient = discoveryClient;
+    }
 
     public static EmbeddedCacheManager getCacheManager() {
         return cacheManager;
@@ -59,12 +91,29 @@ public class CacheConfiguration {
     @Bean
     public InfinispanGlobalConfigurer globalConfiguration(JHipsterProperties jHipsterProperties) {
         log.info("Defining Infinispan Global Configuration");
-            return () -> GlobalConfigurationBuilder
+            if (this.registration == null) { // if registry is not defined, use native discovery
+                log.warn("No discovery service is set up, Infinispan will use default discovery for cluster formation");
+                return () -> GlobalConfigurationBuilder
                     .defaultClusteredBuilder().defaultCacheName("infinispan-jhipster-cluster-cache").transport().defaultTransport()
                     .addProperty("configurationFile", jHipsterProperties.getCache().getInfinispan().getConfigFile())
                     .clusterName("infinispan-jhipster-cluster").globalJmxStatistics()
                     .enabled(jHipsterProperties.getCache().getInfinispan().isStatsEnabled())
                     .allowDuplicateDomains(true).build();
+            } else if (discoveryClient.getInstances(registration.getServiceId()).size() == 0) {
+                return () -> GlobalConfigurationBuilder
+                    .defaultClusteredBuilder().defaultCacheName("infinispan-jhipster-cluster-cache").transport()
+                    .transport(new JGroupsTransport())
+                    .clusterName("infinispan-jhipster-cluster").globalJmxStatistics()
+                    .enabled(jHipsterProperties.getCache().getInfinispan().isStatsEnabled())
+                    .allowDuplicateDomains(true).build();
+            } else {
+                return () -> GlobalConfigurationBuilder
+                    .defaultClusteredBuilder().defaultCacheName("infinispan-jhipster-cluster-cache").transport()
+                    .transport(new JGroupsTransport(getTransportChannel()))
+                    .clusterName("infinispan-jhipster-cluster").globalJmxStatistics()
+                    .enabled(jHipsterProperties.getCache().getInfinispan().isStatsEnabled())
+                    .allowDuplicateDomains(true).build();
+            }
     }
 
     /**
@@ -177,5 +226,70 @@ public class CacheConfiguration {
         return hibernateProperties -> hibernateProperties.put(AvailableSettings.CACHE_REGION_FACTORY, cacheFactoryConfiguration);
     }
 
+    /**
+     * TCP channel with the host details populated from the service discovery
+     * (JHipster Registry or Consul).
+     * <p>
+     * MPING multicast is replaced with TCPPING with the host details discovered
+     * from registry and sends only unicast messages to the host list.
+     */
+    private JChannel getTransportChannel() {
+        JChannel channel = null;
+        List<PhysicalAddress> initialHosts = new ArrayList<>();
+        try {
+            for (ServiceInstance instance : discoveryClient.getInstances(registration.getServiceId())) {
+                String clusterMember = instance.getHost() + ":7800";
+                log.debug("Adding Infinispan cluster member {}", clusterMember);
+                initialHosts.add(new IpAddress(clusterMember));
+            }
+            TCP tcp = new TCP();
+            tcp.setBindAddress(InetAddress.getLocalHost());
+            tcp.setBindPort(7800);
+            tcp.setThreadPoolMinThreads(2);
+            tcp.setThreadPoolMaxThreads(30);
+            tcp.setThreadPoolKeepAliveTime(60000);
+
+            TCPPING tcpping = new TCPPING();
+            initialHosts.add(new IpAddress(InetAddress.getLocalHost(), 7800));
+            tcpping.setInitialHosts(initialHosts);
+            tcpping.setErgonomics(false);
+            tcpping.setPortRange(10);
+            tcpping.sendCacheInformation();
+
+            NAKACK2 nakack = new NAKACK2();
+            nakack.setUseMcastXmit(false);
+            nakack.setDiscardDeliveredMsgs(false);
+
+            MERGE3 merge = new MERGE3();
+            merge.setMinInterval(10000);
+            merge.setMaxInterval(30000);
+
+            FD_ALL fd = new FD_ALL();
+            fd.setTimeout(60000);
+            fd.setInterval(15000);
+            fd.setTimeoutCheckInterval(5000);
+
+            ProtocolStack stack = new ProtocolStack();
+            // Order shouldn't be changed
+            stack
+                .addProtocol(tcp)
+                .addProtocol(tcpping)
+                .addProtocol(merge)
+                .addProtocol(new FD_SOCK())
+                .addProtocol(fd)
+                .addProtocol(new VERIFY_SUSPECT())
+                .addProtocol(nakack)
+                .addProtocol(new UNICAST3())
+                .addProtocol(new STABLE())
+                .addProtocol(new GMS())
+                .addProtocol(new MFC())
+                .addProtocol(new FRAG2());
+            channel = new JChannel(stack);
+            stack.init();
+        } catch (Exception e) {
+            throw new BeanInitializationException("Cache (Infinispan protocol stack) configuration failed", e);
+        }
+        return channel;
+    }
 
 }
