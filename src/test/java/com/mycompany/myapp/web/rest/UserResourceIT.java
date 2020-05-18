@@ -117,7 +117,6 @@ public class UserResourceIT {
     public void getAllUsers() throws Exception {
         // Initialize the database
         userRepository.saveAndFlush(user);
-        mockUserSearchRepository.save(user);
 
         // Get all the users
         restUserMockMvc.perform(get("/api/users?sort=id,desc")
@@ -163,7 +162,6 @@ public class UserResourceIT {
     }
 
     @Test
-    @Transactional
     public void testUserEquals() throws Exception {
         TestUtil.equalsVerifier(User.class);
         User user1 = new User();
