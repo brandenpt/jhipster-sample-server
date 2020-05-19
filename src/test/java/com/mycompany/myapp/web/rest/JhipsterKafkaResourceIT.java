@@ -42,9 +42,7 @@ class JhipsterKafkaResourceIT {
     }
 
     private static void startTestcontainer() {
-        // TODO: withNetwork will need to be removed soon
-        // See discussion at https://github.com/jhipster/generator-jhipster/issues/11544#issuecomment-609065206
-        kafkaContainer = new KafkaContainer("5.5.0").withNetwork(null);
+        kafkaContainer = new KafkaContainer("5.4.0");
         kafkaContainer.start();
     }
 
