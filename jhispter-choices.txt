@@ -38,8 +38,6 @@ Please choose the native language of the application English
 
 Please choose additional languages to install Portuguese
 
-Besides JUnit and Jest, which testing frameworks would you like to use?
-◉ Gatling
-◉ Cucumber
+Besides JUnit and Jest, which testing frameworks would you like to use? Gatling, Cucumber
 
 Would you like to install other generators from the JHipster Marketplace? No
