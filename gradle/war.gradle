@@ -1,7 +1,7 @@
 apply plugin: "war"
 
 bootWar {
-    mainClassName = "com.mycompany.myapp.JhipsterApp"
+    mainClassName = "pt.branden.brandenportal.BrandenportalserverApp"
     includes = ["WEB-INF/**", "META-INF/**"]
 }
 

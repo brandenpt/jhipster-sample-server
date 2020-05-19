@@ -27,14 +27,14 @@ plugins {
     //jhipster-needle-gradle-plugins - JHipster will add additional gradle plugins here
 }
 
-group = "com.mycompany.myapp"
+group = "pt.branden.brandenportal"
 version = "0.0.1-SNAPSHOT"
 
 description = ""
 
 sourceCompatibility=1.8
 targetCompatibility=1.8
-assert System.properties["java.specification.version"] == "1.8" || "11" || "12" || "13"
+assert System.properties["java.specification.version"] == "1.8" || "11" || "12" || "13" || "14"
 
 apply from: "gradle/docker.gradle"
 apply from: "gradle/sonar.gradle"
@@ -86,7 +86,7 @@ eclipse {
 defaultTasks "bootRun"
 
 springBoot {
-    mainClassName = "com.mycompany.myapp.JhipsterApp"
+    mainClassName = "pt.branden.brandenportal.BrandenportalserverApp"
 }
 
 test {
@@ -112,6 +112,11 @@ task integrationTest(type: Test) {
     testLogging {
         events 'FAILED', 'SKIPPED'
     }
+
+    if (project.hasProperty('testcontainers')) {
+        environment 'spring.profiles.active', 'testcontainers'
+    }
+
     // uncomment if the tests reports are not generated
     // see https://github.com/jhipster/generator-jhipster/pull/2771 and https://github.com/jhipster/generator-jhipster/pull/4484
     // ignoreFailures true
@@ -157,8 +162,8 @@ liquibase {
     activities {
         main {
             driver "org.postgresql.Driver"
-            url "jdbc:postgresql://localhost:5432/jhipster"
-            username "jhipster"
+            url "jdbc:postgresql://localhost:5432/brandenportalserver"
+            username "brandenportalserver"
             password ""
             changeLogFile "src/main/resources/config/liquibase/master.xml"
             defaultSchemaName ""
@@ -167,11 +172,11 @@ liquibase {
         }
         diffLog {
             driver "org.postgresql.Driver"
-            url "jdbc:postgresql://localhost:5432/jhipster"
-            username "jhipster"
+            url "jdbc:postgresql://localhost:5432/brandenportalserver"
+            username "brandenportalserver"
             password ""
             changeLogFile project.ext.diffChangelogFile
-            referenceUrl "hibernate:spring:com.mycompany.myapp.domain?dialect=io.github.jhipster.domain.util.FixedPostgreSQL10Dialect&hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy"
+            referenceUrl "hibernate:spring:pt.branden.brandenportal.domain?dialect=io.github.jhipster.domain.util.FixedPostgreSQL10Dialect&hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy"
             defaultSchemaName ""
             logLevel "debug"
             classpath "$buildDir/classes/java/main"
@@ -203,7 +208,7 @@ configurations {
         resolutionStrategy {
             // Inherited version from Spring Boot can't be used because of regressions:
             // To be removed as soon as spring-boot use the same version
-            force 'org.liquibase:liquibase-core:3.8.7'
+            force 'org.liquibase:liquibase-core:3.9.0'
         }
     }
 }
@@ -240,9 +245,6 @@ dependencies {
     implementation "org.infinispan:infinispan-spring-boot-starter-embedded"
     implementation "org.infinispan:infinispan-core"
     implementation "org.infinispan:infinispan-jcache"
-    implementation ("org.infinispan:infinispan-cloud") {
-        exclude module: "undertow-core"
-    }
     implementation "javax.cache:cache-api"
     implementation "org.hibernate:hibernate-core"
     implementation "com.zaxxer:HikariCP"
@@ -269,6 +271,7 @@ dependencies {
     // log4j2-mock needed to create embedded elasticsearch instance with SLF4J
     runtimeOnly "de.dentrassi.elasticsearch:log4j2-mock:${log4j2_mock_version}"
     // end of Spring Data Jest dependencies
+    testImplementation "org.testcontainers:postgresql"
     implementation "org.apache.kafka:kafka-clients"
     implementation "org.springframework.boot:spring-boot-starter-security"
     implementation ("org.springframework.boot:spring-boot-starter-web") {
@@ -281,8 +284,6 @@ dependencies {
     implementation "org.springframework.cloud:spring-cloud-starter-netflix-ribbon"
     implementation "org.springframework.cloud:spring-cloud-starter-netflix-hystrix"
     implementation "org.springframework.retry:spring-retry"
-    implementation "org.springframework.cloud:spring-cloud-starter-consul-discovery"
-    implementation "org.springframework.cloud:spring-cloud-starter-consul-config"
     implementation "org.springframework.cloud:spring-cloud-starter-openfeign"
     implementation "org.springframework.boot:spring-boot-starter-cloud-connectors"
     implementation "org.springframework.security:spring-security-config"
@@ -331,7 +332,7 @@ task cleanResources(type: Delete) {
 }
 
 wrapper {
-    gradleVersion = "6.1"
+    gradleVersion = "6.4.1"
 }
 
 compileJava.dependsOn processResources

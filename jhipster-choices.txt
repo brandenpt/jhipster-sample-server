@@ -4,7 +4,7 @@ Which *type* of application would you like to create? Microservice application
 
 [Alpha] Do you want to make it reactive with Spring WebFlux? No
 
-What is the base name of your application? brandenportal-server
+What is the base name of your application? brandenportalserver
 
 As you are running in a microservice architecture, on which port would like your server to run? It should be unique to avoid port conflicts. 8081
 
@@ -13,6 +13,8 @@ What is your default Java package name? pt.branden.brandenportal
 Which service discovery server do you want to use? No service discovery
 
 Which *type* of authentication would you like to use? OAuth 2.0 / OIDC Authentication (stateful, works with Keycloak and Okta)
+
+Which *type* of database would you like to use? SQL (H2, MySQL, MariaDB, PostgreSQL, Oracle, MSSQL)
 
 Which *production* database would you like to use? PostgreSQL
 

@@ -82,16 +82,12 @@ spring:
   autoconfigure:
     exclude: org.springframework.boot.actuate.autoconfigure.metrics.jdbc.DataSourcePoolMetricsAutoConfiguration,org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration,org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration
   application:
-    name: jhipster
-  cloud:
-    consul:
-      discovery:
-        healthCheckPath: /management/health
-        instanceId: jhipster:${spring.application.instance-id:${random.value}}
-        service-name: jhipster
-      config:
-        watch:
-          enabled: false
+    name: brandenportalserver
+  profiles:
+    # The commented value for `active` can be replaced with valid Spring profiles to load.
+    # Otherwise, it will be filled in by gradle when building the JAR file
+    # Either way, it can be overridden by `--spring.profiles.active` value passed in the commandline or `-Dspring.profiles.active` set in `JAVA_OPTS`
+    active: #spring.profiles.active#
   jmx:
     enabled: false
   data:
@@ -113,7 +109,7 @@ spring:
       hibernate.order_updates: true
       hibernate.query.fail_on_pagination_over_collection_fetch: true
       hibernate.query.in_clause_parameter_padding: true
-      hibernate.cache.infinispan.statistics: true
+      hibernate.cache.infinispan.statistics: false
       hibernate.cache.use_minimal_puts: true
       hibernate.cache.infinispan.entity.expiration.lifespan: 3600000
       hibernate.cache.infinispan.entity.memory.size: 1000
@@ -132,13 +128,13 @@ spring:
       enabled: false
   task:
     execution:
-      thread-name-prefix: jhipster-task-
+      thread-name-prefix: brandenportalserver-task-
       pool:
         core-size: 2
         max-size: 50
         queue-capacity: 10000
     scheduling:
-      thread-name-prefix: jhipster-scheduling-
+      thread-name-prefix: brandenportalserver-scheduling-
       pool:
         size: 2
   thymeleaf:
@@ -176,7 +172,7 @@ info:
 
 jhipster:
   clientApp:
-    name: 'jhipsterApp'
+    name: 'brandenportalserverApp'
   # By default CORS is disabled. Uncomment to enable.
   # cors:
   #     allowed-origins: "*"
@@ -186,11 +182,11 @@ jhipster:
   #     allow-credentials: true
   #     max-age: 1800
   mail:
-    from: jhipster@localhost
+    from: brandenportalserver@localhost
   swagger:
     default-include-pattern: /api/.*
-    title: jhipster API
-    description: jhipster API documentation
+    title: brandenportalserver API
+    description: brandenportalserver API documentation
     version: 0.0.1
     terms-of-service-url:
     contact-name:
@@ -208,7 +204,7 @@ kafka:
   consumer:
     key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
     value.deserializer: org.apache.kafka.common.serialization.StringDeserializer
-    group.id: jhipster
+    group.id: brandenportalserver
     auto.offset.reset: earliest
   producer:
     key.serializer: org.apache.kafka.common.serialization.StringSerializer

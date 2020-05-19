@@ -13,4 +13,4 @@ pluginManagement {
      }
 }
 
-rootProject.name = "jhipster"
+rootProject.name = "brandenportalserver"
