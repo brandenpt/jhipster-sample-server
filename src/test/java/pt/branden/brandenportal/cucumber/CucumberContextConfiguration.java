@@ -1,6 +1,6 @@
 package pt.branden.brandenportal.cucumber;
 
-import pt.branden.brandenportal.BrandenportalserverApp;
+import pt.branden.brandenportal.BrandenPortalServerApp;
 import io.cucumber.java.Before;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
@@ -8,7 +8,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 @SpringBootTest
 @WebAppConfiguration
-@ContextConfiguration(classes = BrandenportalserverApp.class)
+@ContextConfiguration(classes = BrandenPortalServerApp.class)
 public class CucumberContextConfiguration {
 
     @Before

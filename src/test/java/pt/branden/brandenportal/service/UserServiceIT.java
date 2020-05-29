@@ -1,6 +1,6 @@
 package pt.branden.brandenportal.service;
 
-import pt.branden.brandenportal.BrandenportalserverApp;
+import pt.branden.brandenportal.BrandenPortalServerApp;
 import pt.branden.brandenportal.config.Constants;
 import pt.branden.brandenportal.config.TestSecurityConfiguration;
 import pt.branden.brandenportal.domain.User;
@@ -36,7 +36,7 @@ import static org.mockito.Mockito.verify;
 /**
  * Integration tests for {@link UserService}.
  */
-@SpringBootTest(classes = {BrandenportalserverApp.class, TestSecurityConfiguration.class})
+@SpringBootTest(classes = {BrandenPortalServerApp.class, TestSecurityConfiguration.class})
 @Transactional
 public class UserServiceIT {
 

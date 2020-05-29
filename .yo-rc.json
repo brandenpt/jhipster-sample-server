@@ -2,11 +2,11 @@
   "generator-jhipster": {
     "promptValues": {
       "packageName": "pt.branden.brandenportal",
-      "nativeLanguage": "en"
+      "nativeLanguage": "pt-pt"
     },
     "jhipsterVersion": "6.9.0",
     "applicationType": "microservice",
-    "baseName": "brandenportalserver",
+    "baseName": "BrandenPortalServer",
     "packageName": "pt.branden.brandenportal",
     "packageFolder": "pt/branden/brandenportal",
     "serverPort": "8081",

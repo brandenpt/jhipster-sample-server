@@ -58,9 +58,9 @@ public class CacheConfiguration {
     public InfinispanGlobalConfigurer globalConfiguration(JHipsterProperties jHipsterProperties) {
         log.info("Defining Infinispan Global Configuration");
             return () -> GlobalConfigurationBuilder
-                    .defaultClusteredBuilder().defaultCacheName("infinispan-brandenportalserver-cluster-cache").transport().defaultTransport()
+                    .defaultClusteredBuilder().defaultCacheName("infinispan-BrandenPortalServer-cluster-cache").transport().defaultTransport()
                     .addProperty("configurationFile", jHipsterProperties.getCache().getInfinispan().getConfigFile())
-                    .clusterName("infinispan-brandenportalserver-cluster")
+                    .clusterName("infinispan-BrandenPortalServer-cluster")
                     .jmx().enabled(jHipsterProperties.getCache().getInfinispan().isStatsEnabled())
                     .serialization().marshaller(new JBossUserMarshaller())
                     .build();

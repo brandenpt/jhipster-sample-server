@@ -1,6 +1,6 @@
 package pt.branden.brandenportal.web.rest.errors;
 
-import pt.branden.brandenportal.BrandenportalserverApp;
+import pt.branden.brandenportal.BrandenPortalServerApp;
 import pt.branden.brandenportal.config.TestSecurityConfiguration;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @WithMockUser
 @AutoConfigureMockMvc
-@SpringBootTest(classes = {BrandenportalserverApp.class, TestSecurityConfiguration.class})
+@SpringBootTest(classes = {BrandenPortalServerApp.class, TestSecurityConfiguration.class})
 public class ExceptionTranslatorIT {
 
     @Autowired

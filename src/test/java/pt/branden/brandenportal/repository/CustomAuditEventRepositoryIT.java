@@ -1,6 +1,6 @@
 package pt.branden.brandenportal.repository;
 
-import pt.branden.brandenportal.BrandenportalserverApp;
+import pt.branden.brandenportal.BrandenPortalServerApp;
 
 import pt.branden.brandenportal.config.Constants;
 import pt.branden.brandenportal.config.TestSecurityConfiguration;
@@ -29,7 +29,7 @@ import static pt.branden.brandenportal.repository.CustomAuditEventRepository.EVE
 /**
  * Integration tests for {@link CustomAuditEventRepository}.
  */
-@SpringBootTest(classes = {BrandenportalserverApp.class, TestSecurityConfiguration.class})
+@SpringBootTest(classes = {BrandenPortalServerApp.class, TestSecurityConfiguration.class})
 @Transactional
 public class CustomAuditEventRepositoryIT {
 

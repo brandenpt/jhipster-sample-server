@@ -86,7 +86,7 @@ eclipse {
 defaultTasks "bootRun"
 
 springBoot {
-    mainClassName = "pt.branden.brandenportal.BrandenportalserverApp"
+    mainClassName = "pt.branden.brandenportal.BrandenPortalServerApp"
 }
 
 test {
@@ -162,8 +162,8 @@ liquibase {
     activities {
         main {
             driver "org.postgresql.Driver"
-            url "jdbc:postgresql://localhost:5432/brandenportalserver"
-            username "brandenportalserver"
+            url "jdbc:postgresql://localhost:5432/BrandenPortalServer"
+            username "BrandenPortalServer"
             password ""
             changeLogFile "src/main/resources/config/liquibase/master.xml"
             defaultSchemaName ""
@@ -172,8 +172,8 @@ liquibase {
         }
         diffLog {
             driver "org.postgresql.Driver"
-            url "jdbc:postgresql://localhost:5432/brandenportalserver"
-            username "brandenportalserver"
+            url "jdbc:postgresql://localhost:5432/BrandenPortalServer"
+            username "BrandenPortalServer"
             password ""
             changeLogFile project.ext.diffChangelogFile
             referenceUrl "hibernate:spring:pt.branden.brandenportal.domain?dialect=io.github.jhipster.domain.util.FixedPostgreSQL10Dialect&hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy"

@@ -1,7 +1,7 @@
 apply plugin: "war"
 
 bootWar {
-    mainClassName = "pt.branden.brandenportal.BrandenportalserverApp"
+    mainClassName = "pt.branden.brandenportal.BrandenPortalServerApp"
     includes = ["WEB-INF/**", "META-INF/**"]
 }
 

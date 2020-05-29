@@ -3,7 +3,7 @@ services:
   brandenportalserver-elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.8.8
     # volumes:
-    #     - ~/volumes/jhipster/brandenportalserver/elasticsearch/:/usr/share/elasticsearch/data/
+    #     - ~/volumes/jhipster/BrandenPortalServer/elasticsearch/:/usr/share/elasticsearch/data/
     ports:
       - 9200:9200
       - 9300:9300

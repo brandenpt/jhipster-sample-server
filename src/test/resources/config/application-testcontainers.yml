@@ -12,8 +12,8 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
-    url: jdbc:tc:postgresql:latest:///brandenportalserver?TC_TMPFS=/testtmpfs:rw
-    username: brandenportalserver
+    url: jdbc:tc:postgresql:12.1:///BrandenPortalServer?TC_TMPFS=/testtmpfs:rw
+    username: BrandenPortalServer
     password:
     hikari:
       poolName: Hikari

@@ -1,6 +1,6 @@
 package pt.branden.brandenportal.web.rest;
 
-import pt.branden.brandenportal.BrandenportalserverApp;
+import pt.branden.brandenportal.BrandenPortalServerApp;
 import pt.branden.brandenportal.config.TestSecurityConfiguration;
 import pt.branden.brandenportal.domain.PersistentAuditEvent;
 import pt.branden.brandenportal.repository.PersistenceAuditEventRepository;
@@ -31,7 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @AutoConfigureMockMvc
 @WithMockUser(authorities = AuthoritiesConstants.ADMIN)
-@SpringBootTest(classes = {BrandenportalserverApp.class, TestSecurityConfiguration.class})
+@SpringBootTest(classes = {BrandenPortalServerApp.class, TestSecurityConfiguration.class})
 @Transactional
 public class AuditResourceIT {
 

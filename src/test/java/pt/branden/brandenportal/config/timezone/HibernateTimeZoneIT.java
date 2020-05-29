@@ -1,6 +1,6 @@
 package pt.branden.brandenportal.config.timezone;
 
-import pt.branden.brandenportal.BrandenportalserverApp;
+import pt.branden.brandenportal.BrandenPortalServerApp;
 import pt.branden.brandenportal.config.TestSecurityConfiguration;
 import pt.branden.brandenportal.repository.timezone.DateTimeWrapper;
 import pt.branden.brandenportal.repository.timezone.DateTimeWrapperRepository;
@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Integration tests for the UTC Hibernate configuration.
  */
-@SpringBootTest(classes = {BrandenportalserverApp.class, TestSecurityConfiguration.class})
+@SpringBootTest(classes = {BrandenPortalServerApp.class, TestSecurityConfiguration.class})
 public class HibernateTimeZoneIT {
 
     @Autowired

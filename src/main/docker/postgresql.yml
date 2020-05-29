@@ -3,9 +3,9 @@ services:
   brandenportalserver-postgresql:
     image: postgres:12.1
     # volumes:
-    #     - ~/volumes/jhipster/brandenportalserver/postgresql/:/var/lib/postgresql/data/
+    #     - ~/volumes/jhipster/BrandenPortalServer/postgresql/:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_USER=brandenportalserver
+      - POSTGRES_USER=BrandenPortalServer
       - POSTGRES_PASSWORD=
     ports:
       - 5432:5432

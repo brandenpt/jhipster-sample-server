@@ -22,18 +22,18 @@ import java.util.Collection;
 
 @SpringBootApplication
 @EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})
-public class BrandenportalserverApp {
+public class BrandenPortalServerApp {
 
-    private static final Logger log = LoggerFactory.getLogger(BrandenportalserverApp.class);
+    private static final Logger log = LoggerFactory.getLogger(BrandenPortalServerApp.class);
 
     private final Environment env;
 
-    public BrandenportalserverApp(Environment env) {
+    public BrandenPortalServerApp(Environment env) {
         this.env = env;
     }
 
     /**
-     * Initializes brandenportalserver.
+     * Initializes BrandenPortalServer.
      * <p>
      * Spring profiles can be configured with a program argument --spring.profiles.active=your-active-profile
      * <p>
@@ -58,7 +58,7 @@ public class BrandenportalserverApp {
      * @param args the command line arguments.
      */
     public static void main(String[] args) {
-        SpringApplication app = new SpringApplication(BrandenportalserverApp.class);
+        SpringApplication app = new SpringApplication(BrandenPortalServerApp.class);
         DefaultProfileUtil.addDefaultProfile(app);
         Environment env = app.run(args).getEnvironment();
         logApplicationStartup(env);

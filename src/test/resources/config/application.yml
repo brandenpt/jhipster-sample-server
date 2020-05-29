@@ -18,10 +18,10 @@ spring:
   # Uncomment the following line to enable tests against production database type rather than H2, using Testcontainers
   #active: testcontainers
   application:
-    name: brandenportalserver
+    name: BrandenPortalServer
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:h2:mem:brandenportalserver;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:mem:BrandenPortalServer;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     name:
     username:
     password:
@@ -68,13 +68,13 @@ spring:
       enabled: false
   task:
     execution:
-      thread-name-prefix: brandenportalserver-task-
+      thread-name-prefix: branden-portal-server-task-
       pool:
         core-size: 1
         max-size: 50
         queue-capacity: 10000
     scheduling:
-      thread-name-prefix: brandenportalserver-scheduling-
+      thread-name-prefix: branden-portal-server-scheduling-
       pool:
         size: 1
   thymeleaf:
@@ -99,7 +99,7 @@ server:
 
 jhipster:
   clientApp:
-    name: 'brandenportalserverApp'
+    name: 'brandenPortalServerApp'
   logging:
     # To test json console appender
     use-json-format: false
@@ -120,7 +120,7 @@ kafka:
   consumer:
     key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
     value.deserializer: org.apache.kafka.common.serialization.StringDeserializer
-    group.id: brandenportalserver
+    group.id: branden-portal-server
     auto.offset.reset: earliest
   producer:
     key.serializer: org.apache.kafka.common.serialization.StringSerializer

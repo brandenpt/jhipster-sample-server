@@ -1,7 +1,7 @@
 {
-  "name": "brandenportalserver",
+  "name": "branden-portal-server",
   "version": "0.0.0",
-  "description": "Description for brandenportalserver",
+  "description": "Description for BrandenPortalServer",
   "private": true,
   "license": "UNLICENSED",
   "cacheDirectories": [
