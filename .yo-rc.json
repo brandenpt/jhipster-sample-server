@@ -1,0 +1,41 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "pt.branden.brandenportal",
+      "nativeLanguage": "pt-pt"
+    },
+    "jhipsterVersion": "6.9.0",
+    "applicationType": "microservice",
+    "baseName": "BrandenPortalServer",
+    "packageName": "pt.branden.brandenportal",
+    "packageFolder": "pt/branden/brandenportal",
+    "serverPort": "8081",
+    "authenticationType": "oauth2",
+    "cacheProvider": "infinispan",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": "elasticsearch",
+    "messageBroker": "kafka",
+    "serviceDiscoveryType": false,
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "YzY2MTg5NGE5NzEzZGUyNDgxN2EzNDM3NDhmZTBkYzU2MzExMDBkNmNiNGRlNDM1OGRhZTA4MWUwMGNkNjJmMzhiYmNiMjViNmI0NWQ2YmQ4YTZkYmEyOTgzNzY3MTcwYjhiZTNmZTdjMzkwM2U2ZTIzYjM3MTFhNjkyNTc3OTI=",
+    "embeddableLaunchScript": false,
+    "creationTimestamp": 1589894067939,
+    "testFrameworks": ["gatling", "cucumber"],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "clientPackageManager": "npm",
+    "nativeLanguage": "en",
+    "languages": ["en", "pt-pt"],
+    "blueprints": [],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
