@@ -4,7 +4,7 @@
       "packageName": "pt.branden.brandenportal",
       "nativeLanguage": "pt-pt"
     },
-    "jhipsterVersion": "6.9.0",
+    "jhipsterVersion": "6.9.1",
     "applicationType": "microservice",
     "baseName": "BrandenPortalServer",
     "packageName": "pt.branden.brandenportal",
