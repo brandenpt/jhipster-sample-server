@@ -43,10 +43,10 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@openapitools/openapi-generator-cli@1.0.13-4.3.1":
-  version "1.0.13-4.3.1"
-  resolved "https://registry.yarnpkg.com/@openapitools/openapi-generator-cli/-/openapi-generator-cli-1.0.13-4.3.1.tgz#3360698a6b34a33dd46eaf7cdf1a6a9027b1183f"
-  integrity sha512-hUbSHCXak8vujMpTgH5dDACq0mynya37xgPFD3JbmnwRrPrgrZ4mr3+w7QZJ5aLMCIfb2j3s96d1sWaOZYZzxA==
+"@openapitools/openapi-generator-cli@1.0.12-4.3.0":
+  version "1.0.12-4.3.0"
+  resolved "https://registry.yarnpkg.com/@openapitools/openapi-generator-cli/-/openapi-generator-cli-1.0.12-4.3.0.tgz#845f0bfd47a73bdaa188667c3085d721e0d91785"
+  integrity sha512-p6y0ur69/vEslpARrcWg3geujOAjxoQIlIamZGm1cWsu4y4RrEdrolueWA1Lxww2pUzgxvb9PwD6hHFZNNfgrw==
 
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
@@ -1494,10 +1494,10 @@ gauge@~1.2.5:
     lodash.padend "^4.1.0"
     lodash.padstart "^4.1.0"
 
-generator-jhipster@6.9.1:
-  version "6.9.1"
-  resolved "https://registry.yarnpkg.com/generator-jhipster/-/generator-jhipster-6.9.1.tgz#ec39bb0fa6866ee4c03b6e1f014ac42e5c917d5b"
-  integrity sha512-Vr+Hl4PXvSTOXc4VoQAS4hs2QCFd7N1opqIjKyTuQhiSH22n/mWcNsl68eisxj1F/nMHe12fmFtp88dWA+8Fxw==
+generator-jhipster@6.9.0:
+  version "6.9.0"
+  resolved "https://registry.yarnpkg.com/generator-jhipster/-/generator-jhipster-6.9.0.tgz#1267b668a1687f012f54614b659c5756ab0f8437"
+  integrity sha512-I8yLs8QZHwCo0BLjpEf1IuLGmo15C9F0Xbk+39JFHfkK1wMh31H2Gwar38382+YHdyOYgPg3mGaujyCmGFXDdw==
   dependencies:
     aws-sdk "2.665.0"
     axios "0.19.2"
